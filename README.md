@@ -20,6 +20,10 @@ dataset_stats.py .... gives all the classes and nos of images per class
 Used in generatin label map pb.txt
 
 generate_tfrecord.py input tp pretrained models.
+Provide path dir over here:
+flags.DEFINE_string('input_path', 'additional_train.yaml', 'Path to the yaml input')
+flags.DEFINE_string('output_path', 'train_TFRecord', 'Path to output TFRecord')
+change these 'additional_train.yaml','train_TFRecord'
 
 object_detection_tutorial.ipynb is the script where we test our images.(Load the model and run test.)
 
