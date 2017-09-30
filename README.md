@@ -23,5 +23,9 @@ generate_tfrecord.py input tp pretrained models.
 
 object_detection_tutorial.ipynb is the script where we test our images.(Load the model and run test.)
 
+Bosch data
+https://hci.iwr.uni-heidelberg.de/node/6132/download/8fec5eefe8aea975e15ecda1eec6fc0e
+We to just take rgb  images and not riib images
+
 
 
