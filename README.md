@@ -39,16 +39,17 @@ The dir for Bosch data where we keep script to generate yaml,TF record looks lik
 
 
 
-Data dir struct for tainining:
-+data
-  -label_map file
-  -train TFRecord file
-  -eval TFRecord file
-+models
-  + model
-    -pipeline config file
-    +train
-    +eval
+>Data dir struct for tainining model:
+>
+>+data
+>  -label_map file
+>  -train TFRecord file
+>  -eval TFRecord file
+>+models
+>  + model
+>    -pipeline config file
+>   +train
+>   +eval
 
 
 
