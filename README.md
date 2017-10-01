@@ -31,5 +31,22 @@ Bosch data
 https://hci.iwr.uni-heidelberg.de/node/6132/download/8fec5eefe8aea975e15ecda1eec6fc0e
 We need to just take rgb  images and not riib images
 
+Added script generate_yaml.py. This is used to read all iamges in test dir and generate yaml file.Then from .yaml we need to get TF_record for test dir.
+
+
+The dir for Bosch data where we keep script to generate yaml,TF record looks like this
+![Alt text](/img/img.jpg?raw=true "Optional Title")
+
+Data dir struct for tainining:
++data
+  -label_map file
+  -train TFRecord file
+  -eval TFRecord file
++models
+  + model
+    -pipeline config file
+    +train
+    +eval
+
 
 
