@@ -35,7 +35,7 @@ Added script generate_yaml.py. This is used to read all iamges in test dir and g
 
 
 The dir for Bosch data where we keep script to generate yaml,TF record looks like this
-![Alt text](/img/img.jpg?raw=true "Optional Title")
+![DIR_STRUCT](/img/img.jpg?raw=true "Optional Title")
 
 Data dir struct for tainining:
 +data
