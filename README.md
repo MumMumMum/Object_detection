@@ -15,31 +15,51 @@ After installation,we need to follow these steps mentioned below:
 3.set PYTHONPATH=G:\CarND\ObjectDetection\models-master;G:\CarND\ObjectDetection\models-master\research\slim(windows)  
 4.export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim(linux)  
 
-###FILES to genererate TFRecord.record  
-1. *dataset_stats.py*: gives all the classes and nos of images per class   
-Used in generatin label map pb.txt  
+###FILES to genererate TFRecord.record   
+1. *dataset_stats.py*: gives all the classes and nos of images per class     
+      *Used in generatin label map pb.txt  
 
 2. *generate_tfrecord.py*: This files reads yaml files and takes iamges and generates the TFrecord files.
-     -the filename args, are passed in flags over here.  
+      *the filename args, are passed in flags over here.  
          flags.DEFINE_string('input_path', 'additional_train.yaml', 'Path to the yaml input')  
          flags.DEFINE_string('output_path', 'train_TFRecord', 'Path to output TFRecord')  
       
 
 3. *object_detection_tutorial.ipynb* is the script where we test our images.(Load the model and run test.)
 
-Bosch data
+### Bosch data  
 https://hci.iwr.uni-heidelberg.de/node/6132/download/8fec5eefe8aea975e15ecda1eec6fc0e
-We need to just take rgb  images and not riib images
+- We need to just take rgb  images and not riib images   
+- Test Data has no yaml  
+- use generate_yaml.py generate yaml on test Data.  
 
-Added script generate_yaml.py. This is used to read all iamges in test dir and generate yaml file.Then from .yaml we need to get TF_record for test dir.
+### Config files  
+    Need to edit ssd_mobilenet_v1_coco.config for the model.  
+    - Nos of classes 14.  
+    - Path of Test and Train record. I have provided full path, Linux user can give relative path.  
+    
+    
+### Data Dir
+  For training we need to work on Object detection setup.The dir struct looks like this:  
+  ``` +data  
+      -label_map file  
+      -train TFRecord file  
+      -eval TFRecord file  
+  +models  
+    + model  
+      -pipeline config file  
+      +train  
+      +eval  
+  ```
 
 
-The dir for Bosch data where we keep script to generate yaml,TF record looks like this
-![DIR_STRUCT](/img/img.jpg?raw=true "Optional Title")
+### Training  
+  For train.py use command :
+  ```
+      python train.py --logtostderr --pipeline_config_path=G:\CarND\ObjectDetection\models-master\research\object_detection \models\ssd_mobilenet_v1_coco_11_06_2017\ssd_mobilenet_v1_coco.config --train_dir=G:\CarND\ObjectDetection\models-master\research\object_detection\data
+```
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/running_locally.md 
 
-
-
-refer this file https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/running_locally.md#recommended-directory-structure-for-training-and-evaluation to prepare for taining.
 
 
 
