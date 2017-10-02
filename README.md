@@ -12,8 +12,8 @@ After installation,we need to follow these steps mentioned below:
 (it is not mentioned but we need this for train.py)  
 1.setup.py build  
 2.setup.py install  
-3.set PYTHONPATH=G:\CarND\ObjectDetection\models-master;G:\CarND\ObjectDetection\models-master\research\slim(windows)  
-4.export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim(linux)  
+3. windows:`set PYTHONPATH=G:\CarND\ObjectDetection\models-master;G:\CarND\ObjectDetection\models-master\research\slim`    
+4. linux : ```export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim ```  
 
 ###FILES to genererate TFRecord.record   
 1. *dataset_stats.py*: gives all the classes and nos of images per class     
@@ -41,7 +41,8 @@ https://hci.iwr.uni-heidelberg.de/node/6132/download/8fec5eefe8aea975e15ecda1eec
     
 ### Data Dir
   For training we need to work on Object detection setup.The dir struct looks like this:  
-  ``` +data  
+  ```
+  +data  
       -label_map file  
       -train TFRecord file  
       -eval TFRecord file  
