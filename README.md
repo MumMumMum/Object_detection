@@ -15,7 +15,7 @@ After installation,we need to follow these steps mentioned below:
 3. windows:`set PYTHONPATH=G:\CarND\ObjectDetection\models-master;G:\CarND\ObjectDetection\models-master\research\slim`    
 4. linux : ```export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim ```  
 
-###FILES to genererate TFRecord.record   
+### FILES to genererate TFRecord.record   
 1. *dataset_stats.py*: gives all the classes and nos of images per class     
       *Used in generatin label map pb.txt  
 
