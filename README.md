@@ -1,9 +1,11 @@
 ## Bosch Small Traffic Lights Dataset
 
-Installation :
-We need this API downloaded and installed, https://github.com/tensorflow/model
+**Installation :**
+We need this API downloaded and installed, 
+`https://github.com/tensorflow/model`
 Also all these will be need only to train model, 
-on Carla we dont need these we are just going to use freezed model.
+on Carla we dont need these we will need just classify.
+
 
 
 Refer this to complete the installation:
