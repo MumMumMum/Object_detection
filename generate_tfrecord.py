@@ -16,41 +16,48 @@
 
 """Convert raw PASCAL dataset to TFRecord for object_detection.
 Example usage:
-    ./create_pascal_tf_record --data_dir=/home/user/VOCdevkit \
-        --year=VOC2012 \
-        --output_path=/home/user/pascal.record
+    python generate_tfrecord.py G:\CarND\ObjectDetection\BoschData\train_01\train.yaml G:\CarND\ObjectDetection\BoschData\train_01\train_045.record
+G:\CarND\ObjectDetection\BoschData\train_01\train_045.record train
+
+python generate_tfrecord.py G:\CarND\ObjectDetection\BoschData\train_01\train.yaml G:\CarND\ObjectDetection\BoschData\test_01\test_045.record
+G:\CarND\ObjectDetection\BoschData\test_01\test_045.record test
 """
 
-
+## 3rd param train stands for train, test for test
 import tensorflow as tf
 import yaml
 import os
 import dataset_util
 import io
 
+import sys
+import logging
+
 from PIL import Image
 
 flags = tf.app.flags
-flags.DEFINE_string('input_path', 'additional_train.yaml', 'Path to the yaml input')
-flags.DEFINE_string('output_path', 'train_TFRecord', 'Path to output TFRecord')
+
+#flags.DEFINE_string('input_path_dir', '\\train_01', 'Path to the yaml input')
+#flags.DEFINE_string('input_path_dir', '\\test_01', 'Path to the yaml input')
 FLAGS = flags.FLAGS
 
 
 LABEL_DICT = {
- "GreenRight": 1,
-        "RedLeft":2,
-        "RedStraight": 3,
-        "GreenStraightLeft":4,
-        "occluded":5,
-        "GreenStraightRight": 6,
-        "RedRight":7,
-        "Green": 8,
-        "Yellow": 9,
-        "Red":10,
-        "GreenLeft": 11,
-        "GreenStraight": 12,
-        "RedStraightLeft": 13,
-        "off":14
+        "off":1,
+		"Red":2,
+		"Yellow": 3,
+		"Green": 4,
+		"GreenRight": 5,
+        "RedLeft":6,
+        "RedStraight": 7,
+        "GreenStraightLeft":8,
+        "occluded":9,
+        "GreenStraightRight": 10,
+        "RedRight":11,
+        "GreenLeft": 12,
+        "GreenStraight": 13,
+        "RedStraightLeft": 14,
+        
 
 }
 
@@ -62,7 +69,7 @@ def create_tf_example(example):
     encoded_image_io = io.BytesIO(encoded_image)
     image = Image.open(encoded_image_io)
     width, height = image.size
-    print("w",width,"h",height)
+    #print("w",width,"h",height)
         
     image_format = 'png'.encode() 
     xmins = [] # List of normalized left x coordinates in bounding box (1 per box)
@@ -104,29 +111,50 @@ def create_tf_example(example):
     
  
 def main(_):
-    print(os.path.join(os.getcwd(), FLAGS.output_path))
-    #print((os.getcwd()))
-    #print(FLAGS.input_path)
-    writer = tf.python_io.TFRecordWriter(FLAGS.output_path)
-    examples = yaml.load(open(os.path.join(os.getcwd(), FLAGS.input_path), 'rb').read())
+    
+    writer = tf.python_io.TFRecordWriter(record_file)
+    examples = yaml.load(open(yaml_file, 'rb').read())
+
     len_examples = len(examples)
     print("Loaded ", len(examples), "examples")
     
-    #examples = examples[:10]  # for testing
-    # is dict with key as box and path
-    #print("example" , examples[8])
+    examples = examples[:10]  # for testing
+    len_examples = len(examples)
+    print("Loaded ", len(examples), "examples")
+    path = os.getcwd()+str_path
+    print("path is ",path)
     for i in range(len(examples)):
-        examples[i]['path'] = os.path.abspath(os.path.join(os.path.dirname(FLAGS.input_path), examples[i]['path']))
-        #print("example" , examples[i]['path'])
+        print("path is ",os.path.abspath(os.path.join(path, examples[i]['path'])))
+        examples[i]['path'] = os.path.abspath(os.path.join(path, examples[i]['path']))
+        #print(examples[i])
         
-        
+    counter = 0   
     for example in examples:
         tf_example = create_tf_example(example)
         writer.write(tf_example.SerializeToString())
+        if counter % 10 == 0:
+            print("percent done",(counter/len(examples)*100))
+        
+        counter += 1
     writer.close()
+    print("serialization done!!!")
     
     
 if __name__ == '__main__':
+    
+    if len(sys.argv) < 4:
+        print(__doc__)
+        sys.exit(-1)
+        
+    yaml_file    = sys.argv[1]
+    record_file =  sys.argv[2]
+    train = sys.argv[3]
+    print("trains",train)
+    if train == 'train' :
+        str_path = '\\train_01'
+    else :
+        str_path = '\\test_01'
+    print (record_file)
     tf.app.run()
     
     
