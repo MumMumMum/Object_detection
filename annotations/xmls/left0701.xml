@@ -1,0 +1,26 @@
+<annotation>
+	<folder>imgs</folder>
+	<filename>left0701.jpg</filename>
+	<path>G:\CarND\ObjectDetection\LabelImg\imgs\left0701.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1368</width>
+		<height>1096</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Yellow</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>245</xmin>
+			<ymin>353</ymin>
+			<xmax>329</xmax>
+			<ymax>539</ymax>
+		</bndbox>
+	</object>
+</annotation>

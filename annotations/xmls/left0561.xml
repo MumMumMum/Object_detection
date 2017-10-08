@@ -1,0 +1,26 @@
+<annotation>
+	<folder>imgs</folder>
+	<filename>left0561.jpg</filename>
+	<path>G:\CarND\ObjectDetection\LabelImg\imgs\left0561.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1368</width>
+		<height>1096</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Red</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>504</xmin>
+			<ymin>372</ymin>
+			<xmax>564</xmax>
+			<ymax>509</ymax>
+		</bndbox>
+	</object>
+</annotation>
